@@ -1,0 +1,4 @@
+%h4= "#{pluralize(model.errors.count, "error")} prohibited from being saved:"
+%ul.errors-list
+  - model.errors.full_messages.each do |msg|
+    %li.errors-list-item= msg

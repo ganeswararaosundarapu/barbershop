@@ -1,0 +1,27 @@
+.container#dashboard-container
+  .row
+    #date-container.col-md-12
+      %h3 Select Date
+      .row.col-md-3.col-sm-4.col-xs-6
+        %input.form-control{ type: 'text', id: 'slot-date', placeholder: "mm/dd/yyyy" , readonly: true}
+  .row
+    #slots-container.col-md-12
+
+
+:javascript
+  $( function() {
+    $( "#slot-date").datepicker({
+      minDate: 0,
+      onSelect: function(date, instance) {
+        getBookingSlots(date);
+     }
+    });
+  });
+
+  function getBookingSlots(date){
+    $.ajax({
+          type: 'GET',
+          data: 'date='+date,
+          url: '/booking_slots'
+        });
+  }

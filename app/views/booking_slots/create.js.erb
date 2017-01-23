@@ -1,0 +1,6 @@
+<% if @errors.any? %>
+  alert("<%= @errors[0] %>");
+<% else %>
+  getBookingSlots("<%= @date %>");
+  console.log("successfully created >>");
+<% end %>

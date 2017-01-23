@@ -1,0 +1,26 @@
+.form-group
+  %ul.list-inline#slot-list
+    -slots.each do |slot|
+      %li.list-group-item.no-border
+        %a.btn{class: SlotTiming.slot_status_class(slot.id, booked_slots, available_from), "data-val": slot.id}
+          =slot.slot
+.form-group
+  %ul.list-inline
+    %li
+      %span.available
+        Available
+    %li
+      %span.booked
+        Booked
+    %li
+      %span.expired
+        Expired
+:javascript
+  $(function(){
+      $("#slots-container #slot-list a.btn-success").on("click", function(){
+          var params = "slot="+$(this).data("val")+"&date="+$("#date-container #slot-date").val();
+          $.post("/booking_slots", params, function(){}, 'script');
+      });
+  });
+
+
